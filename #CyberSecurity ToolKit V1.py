@@ -35,6 +35,54 @@ import secrets
 def password_generator():
     generated=0 
     valid_length=False
+    lowercase="abcdefghijklmnopqrstuvwxyz"
+    uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    numbers="1234567890"
+    special_characters="_=+/.,<>#!$%^&*"
+    choices={
+            "yes":True
+            ,
+            "y":True
+            ,
+            "no":False
+            ,
+            "n":False
+     }
+
+    while True:
+        lowercase_choice=input("do you want lowercase letters? y/n ").lower().strip()
+        uppercase_choice=input("do you want uppercase letters? y/n ").lower().strip()
+        numbers_choice=input("do you want numbers? y/n ").lower().strip()
+        special_characters_choice=input("do you want special characters? y/n ").lower().strip()
+        while lowercase_choice not in choices:
+                print("please pick a choice, try again!")
+                lowercase_choice=input("do you want lowercase letters? y/n ").lower().strip()
+        while uppercase_choice not in choices:
+                print("please pick a choice, try again!")
+                uppercase_choice=input("do you want uppercase letters? y/n ").lower().strip()
+        while numbers_choice not in choices:
+                print("please pick a choice, try again")
+                numbers_choice=input("do you want numbers? y/n ").lower().strip()
+        while special_characters_choice not in choices:
+                 print("please pick a choice, try again")
+                 special_characters_choice=input("do you want special characters? y/n ").lower().strip()
+        lowercase_enabled=choices[lowercase_choice]
+        uppercase_enabled=choices[uppercase_choice]
+        numbers_enabled=choices[numbers_choice]
+        special_characters_enabled=choices[special_characters_choice]
+        if lowercase_enabled or uppercase_enabled or numbers_enabled or special_characters_enabled:
+            break
+
+    character_pool=""
+    if lowercase_enabled==True:
+        character_pool=character_pool+lowercase
+    if uppercase_enabled==True:
+        character_pool=character_pool+uppercase
+    if numbers_enabled==True:
+        character_pool=character_pool+numbers
+    if special_characters_enabled==True:
+        character_pool=character_pool+special_characters
+
     while valid_length==False:
         try:
             length=int(input("how long do you want your password to be? ").lower().strip())
@@ -47,9 +95,8 @@ def password_generator():
             valid_length=False
     password=[]
     while generated!=length:
-            letters="abcdefghijklmnopqrstuvwxyz"+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"1234567890"+"_=+/.,<>#!$%^&*"
-            random_index=secrets.randbelow(len(letters))
-            random_character=letters[random_index]
+            random_index=secrets.randbelow(len(character_pool))
+            random_character=character_pool[random_index]
             generated=generated+1
             password.append(random_character)
     password="".join(password)
@@ -83,7 +130,7 @@ def log_analyzer():
 
 
 
-#options list to make if/elif statements not as long and to tidy up code
+#dictionary to make if/elif statements not as long and to tidy up code
 options={
     "password generator" :password_generator
     ,
