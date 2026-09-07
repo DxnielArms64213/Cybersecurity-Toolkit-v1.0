@@ -29,16 +29,16 @@
 
 import random
 import secrets
+import hashlib
 
 
 #Password generator function
 def password_generator():
-    generated=0 
     valid_length=False
     lowercase="abcdefghijklmnopqrstuvwxyz"
     uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     numbers="1234567890"
-    special_characters="_=+/.,<>#!$%^&*"
+    special_characters="!#$%&'()*+,-./:;<=>?@[]^_"
     choices={
             "yes":True
             ,
@@ -74,41 +74,109 @@ def password_generator():
             break
 
     character_pool=""
-    if lowercase_enabled==True:
-        character_pool=character_pool+lowercase
-    if uppercase_enabled==True:
-        character_pool=character_pool+uppercase
-    if numbers_enabled==True:
-        character_pool=character_pool+numbers
-    if special_characters_enabled==True:
-        character_pool=character_pool+special_characters
+    if lowercase_enabled:
+        character_pool+=lowercase
+    if uppercase_enabled:
+        character_pool+=uppercase
+    if numbers_enabled:
+        character_pool+=numbers
+    if special_characters_enabled:
+        character_pool+=special_characters
+
+    number_of_types=lowercase_enabled+uppercase_enabled+numbers_enabled+special_characters_enabled
 
     while valid_length==False:
         try:
             length=int(input("how long do you want your password to be? ").lower().strip())
-            if length<=0 or length>20:
+            if length<=0 or length>20 or length<number_of_types:
                 print("invalid length try again")
             else:
                 valid_length=True
         except ValueError:
             print("please enter a number")
             valid_length=False
+
     password=[]
-    while generated!=length:
+    
+    if lowercase_enabled:
+        random_index=secrets.randbelow(len(lowercase))
+        random_character=lowercase[random_index]
+        password.append(random_character)
+    if uppercase_enabled:
+        random_index=secrets.randbelow(len(uppercase))
+        random_character=uppercase[random_index]
+        password.append(random_character)
+    if numbers_enabled:
+        random_index=secrets.randbelow(len(numbers))
+        random_character=numbers[random_index]
+        password.append(random_character)
+    if special_characters_enabled:
+        random_index=secrets.randbelow(len(special_characters))
+        random_character=special_characters[random_index]
+        password.append(random_character)
+    
+    while (len(password))<length:
             random_index=secrets.randbelow(len(character_pool))
             random_character=character_pool[random_index]
-            generated=generated+1
             password.append(random_character)
+    secrets.SystemRandom().shuffle(password)
     password="".join(password)
-    return password
+    print(password)
 
 
 def strength_checker():
-    c=("not ready yet")
-    return c 
+    password=input("please enter your password: ")
+    score=0
+    special_characters="!#$%&'()*+,-./:;<=>?@[]^_"
+    length=(len(password))
+    lowercase_found=False
+    uppercase_found=False
+    numbers_found=False
+    special_found=False
+    for character in password:
+        if character.islower() and not lowercase_found:
+            score+=1
+            lowercase_found=True
+        if character.isupper() and not uppercase_found:
+            score+=1
+            uppercase_found=True
+        if character.isdigit() and not numbers_found:
+            score+=1
+            numbers_found=True
+        if character in special_characters and not special_found:
+            score+=1
+            special_found=True
+    if length>=8:
+        score+=2
+    if length>=12:
+        score+=2
+    if length>=16:
+        score+=2
+
+    if score<=3:
+        print(f"{score} is your score, this is a weak password")
+    elif score<=6:
+        print(f"{score} is your score, this is an okay password")
+    elif score<=10:
+        print(f"{score} is your score, this is a strong password")
+
 def hash_generator():
-    c=("not ready yet")
-    return c 
+    hash_options ={
+        "sha256":hashlib.sha256
+        ,
+        "sha512":hashlib.sha512
+        ,
+        "sha1":hashlib.sha1
+
+    }
+    data=input("please enter the data you want to be hashed: ").lower().strip().encode()
+    hash_choice=input("please enter the hash you want to use: (sha256/sha512/sha1)   ").lower().strip()
+    hashed_data=hash_options[hash_choice](data)
+    hashed_data=hashed_data.hexdigest()
+    print(hashed_data)
+
+
+    return  
 def ip_information():
     c=("not ready yet")
     return c 
@@ -126,8 +194,7 @@ def subnet_calculator():
     return c 
 def log_analyzer():
     c=("B")
-    return c
-
+    return
 
 
 #dictionary to make if/elif statements not as long and to tidy up code
@@ -212,8 +279,7 @@ def menu_main():
     ╚══════════════════════════════════════════╝""")).lower().strip().split()
         menu=" ".join(menu)
         if menu in options:
-          result=options[menu]()
-          print(result)
+            options[menu]()
         elif menu in exit_program:
             running=False
         else:
