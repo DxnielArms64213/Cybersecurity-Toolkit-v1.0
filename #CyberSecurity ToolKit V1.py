@@ -183,9 +183,24 @@ def ip_information():
 def port_scanner():
     c=("not ready")
     return c
+
+
+
+
 def file_hash_checker():
-    c=("G")
-    return c 
+    file_path=input("please enter the file path: ").strip()
+    try:
+        file=open(file_path,"rb")
+        contents=file.read()
+        hashed_contents=hashlib.sha256(contents)
+        hashed_contents=hashed_contents.hexdigest()
+        print(hashed_contents)
+    except FileNotFoundError:
+        print("file not found, please try again")
+
+
+
+
 def encode_decode():
     c=("return")
     return c 
