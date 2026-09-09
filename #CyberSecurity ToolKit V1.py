@@ -27,9 +27,10 @@
 # 9. Log Analyzer
 # 10. Exit
 
-import random
+import base64
 import secrets
 import hashlib
+import binascii
 
 
 #Password generator function
@@ -190,20 +191,39 @@ def port_scanner():
 def file_hash_checker():
     file_path=input("please enter the file path: ").strip()
     try:
-        file=open(file_path,"rb")
-        contents=file.read()
+        with open(file_path,"rb") as file:
+            contents=file.read()
         hashed_contents=hashlib.sha256(contents)
         hashed_contents=hashed_contents.hexdigest()
         print(hashed_contents)
     except FileNotFoundError:
-        print("file not found, please try again")
+            print("file not found, please try again")
+    except PermissionError:
+            print("invalid file path, please try again")
 
 
 
 
 def encode_decode():
-    c=("return")
-    return c 
+    choice=input("do you want to encode or decode? ").lower().strip()
+    valid_choices=["encode","decode"]
+    while choice not in valid_choices:
+         print("please pick a valid choice, try again")
+         choice=input("do you want to encode or decode? ").lower().strip()
+    data=input("please enter the data: ").strip().encode()
+    try:
+        if choice=="encode":
+            encoded_data=base64.b64encode(data).decode()
+            print(encoded_data," is your result")
+        elif choice=="decode":
+            decoded_data=base64.b64decode(data).decode()
+            print(decoded_data," is your result")
+    except binascii.Error:
+         print("Invalid Base64 data, please try again ")
+
+
+
+
 def subnet_calculator():
     c=("G")
     return c 
