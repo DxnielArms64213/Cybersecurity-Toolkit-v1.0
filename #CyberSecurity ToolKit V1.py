@@ -31,6 +31,7 @@ import base64
 import secrets
 import hashlib
 import binascii
+import ipaddress
 
 
 #Password generator function
@@ -124,7 +125,6 @@ def password_generator():
     password="".join(password)
     print(password)
 
-
 def strength_checker():
     password=input("please enter your password: ")
     score=0
@@ -174,20 +174,49 @@ def hash_generator():
     hash_choice=input("please enter the hash you want to use: (sha256/sha512/sha1)   ").lower().strip()
     hashed_data=hash_options[hash_choice](data)
     hashed_data=hashed_data.hexdigest()
-    print(hashed_data)
+    print(hashed_data) 
 
 
-    return  
+
+
 def ip_information():
-    c=("not ready yet")
-    return c 
+    user_IP=input("please enter your IP: ").strip()
+    try:
+        user_IP=ipaddress.ip_address(user_IP)
+        if user_IP.is_private:
+            print("you have a private IP")
+        else:
+            print("you have a public IP")
+        if user_IP.version==4:
+            print("you have an IPv4 address")
+        elif user_IP.version==6:
+            print("you have an IPv6 address")
+        if user_IP.is_loopback:
+             print("you have a loopback address")
+        else:
+             print("you dont have a loopback address")
+        if user_IP.is_multicast:
+             print("you have a multicast IP")
+        else:
+             print("you dont have a multicast IP")
+        if user_IP.is_unspecified:
+             print("you have an unspecified IP")
+        else:
+             print("you dont have an unspecified IP")
+        if user_IP.is_reserved:
+             print("this IP is reserved")
+        else:
+             print("this IP is not reserved")
+    except ValueError:
+         print("please enter a valid IP")
+
+
+
+
+
 def port_scanner():
     c=("not ready")
     return c
-
-
-
-
 def file_hash_checker():
     file_path=input("please enter the file path: ").strip()
     try:
@@ -200,10 +229,6 @@ def file_hash_checker():
             print("file not found, please try again")
     except PermissionError:
             print("invalid file path, please try again")
-
-
-
-
 def encode_decode():
     choice=input("do you want to encode or decode? ").lower().strip()
     valid_choices=["encode","decode"]
@@ -220,17 +245,12 @@ def encode_decode():
             print(decoded_data," is your result")
     except binascii.Error:
          print("Invalid Base64 data, please try again ")
-
-
-
-
 def subnet_calculator():
     c=("G")
     return c 
 def log_analyzer():
     c=("B")
     return
-
 
 #dictionary to make if/elif statements not as long and to tidy up code
 options={
