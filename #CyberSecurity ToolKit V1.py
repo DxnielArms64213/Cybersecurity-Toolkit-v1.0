@@ -181,32 +181,37 @@ def hash_generator():
 
 def ip_information():
     user_IP=input("please enter your IP: ").strip()
+    print("IP address:",user_IP)
     try:
         user_IP=ipaddress.ip_address(user_IP)
         if user_IP.is_private:
-            print("you have a private IP")
+            print("Private: Yes")
         else:
-            print("you have a public IP")
+            print("Private: No")
         if user_IP.version==4:
-            print("you have an IPv4 address")
+            print("IP version: IPv4")
         elif user_IP.version==6:
-            print("you have an IPv6 address")
+            print("IP version: IPv6")
         if user_IP.is_loopback:
-             print("you have a loopback address")
+             print("Loopback: Yes")
         else:
-             print("you dont have a loopback address")
+             print("Loopback: No")
         if user_IP.is_multicast:
-             print("you have a multicast IP")
+             print("Multicast: Yes")
         else:
-             print("you dont have a multicast IP")
+             print("Multicast: No")
         if user_IP.is_unspecified:
-             print("you have an unspecified IP")
+             print("Unspecified: Yes")
         else:
-             print("you dont have an unspecified IP")
+             print("Unspecified: No")
         if user_IP.is_reserved:
-             print("this IP is reserved")
+             print("Reserved: Yes")
         else:
-             print("this IP is not reserved")
+             print("Reserved: No")
+        if user_IP.is_global:
+             print("Global: Yes")
+        else:
+             print("Global: No")
     except ValueError:
          print("please enter a valid IP")
 
@@ -246,8 +251,12 @@ def encode_decode():
     except binascii.Error:
          print("Invalid Base64 data, please try again ")
 def subnet_calculator():
-    c=("G")
-    return c 
+    network_input=input("please enter the network in CIDR: ").strip()
+    network_input=ipaddress.ip_network(network_input)
+    print("Network address",network_input.network_address)
+    print("subnet:",network_input.prefixlen)
+    print("netmask:",network_input.netmask)
+  
 def log_analyzer():
     c=("B")
     return
