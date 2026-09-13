@@ -251,11 +251,28 @@ def encode_decode():
     except binascii.Error:
          print("Invalid Base64 data, please try again ")
 def subnet_calculator():
-    network_input=input("please enter the network in CIDR: ").strip()
-    network_input=ipaddress.ip_network(network_input)
+    valid=False
+    network_input=input("Please enter the network in CIDR: ").strip()
+    while valid is False:
+        try:
+            network_input=ipaddress.ip_network(network_input, strict=False)
+            valid=True
+        except ValueError:
+            print("Pleease try again")
+            network_input=input("Please enter the network in CIDR: ").strip()
     print("Network address",network_input.network_address)
-    print("subnet:",network_input.prefixlen)
-    print("netmask:",network_input.netmask)
+    print("Subnet:",network_input.prefixlen)
+    print("Netmask:",network_input.netmask)
+    print("Number of addresses:",network_input.num_addresses)
+    print("Broadcast address:",network_input.broadcast_address)
+    hosts=list(network_input.hosts())
+    if hosts:
+        print("First usable Host:", hosts[0])
+        print("Last usable Host:",hosts[-1])
+        print("Usable Hosts", len(hosts))
+    else:
+         print("No hosts available")
+
   
 def log_analyzer():
     c=("B")
@@ -347,7 +364,7 @@ def menu_main():
         elif menu in exit_program:
             running=False
         else:
-            print("invalid option, please try again!")
+            print("Invalid option, please try again!")
 
 
 
