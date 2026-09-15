@@ -32,7 +32,7 @@ import secrets
 import hashlib
 import binascii
 import ipaddress
-
+import socket
 
 #Password generator function
 def password_generator():
@@ -220,8 +220,17 @@ def ip_information():
 
 
 def port_scanner():
-    c=("not ready")
-    return c
+    IP_input=input("please enter the IP: ").strip()
+    sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    port=80
+    try:
+        sock.connect((IP_input,port))
+    except ConnectionRefusedError:
+         print(f"{port}:", "closed")
+    else:
+         print(f"{port}:", "open")
+   
+    
 def file_hash_checker():
     file_path=input("please enter the file path: ").strip()
     try:
