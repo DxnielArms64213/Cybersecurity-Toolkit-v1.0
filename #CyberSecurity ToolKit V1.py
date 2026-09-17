@@ -221,14 +221,23 @@ def ip_information():
 
 def port_scanner():
     IP_input=input("please enter the IP: ").strip()
-    sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    port=80
-    try:
-        sock.connect((IP_input,port))
-    except ConnectionRefusedError:
-         print(f"{port}:", "closed")
-    else:
-         print(f"{port}:", "open")
+    start_port = int(input("please enter a start port: ").strip())
+    end_port = int(input("please enter an end port: ").strip())
+    for port in range(start_port,end_port+1):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        if start_port<0 or end_port>65535 or start_port>end_port:
+             print("please enter a valid port")
+        try:
+            sock.settimeout(5)
+            sock.connect((IP_input,port))
+        except ConnectionRefusedError:
+            print(f"{port}:", "closed")
+        except TimeoutError:
+            print(f"{port}:","timed out")
+        else:
+            print(f"{port}:", "open")
+        finally:
+             sock.close()
    
     
 def file_hash_checker():
