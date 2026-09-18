@@ -317,9 +317,63 @@ def subnet_calculator():
 
   
 def log_analyzer():
-    c=("B")
-    return
+    file_path=input("please enter the file path: ").strip()
+    Info=0
+    Warning=0
+    Error=0
+    Failed_login=0
+    Failed_login_events=[]
+    Suspicious_Powershell=0
+    Suspicious_Powershell_Events=[]
+    Admin_created=0
+    Admin_created_events=[]
+    try:
+        with open(file_path) as log_file:
+            for line in log_file:
+                if "INFO" in line:
+                    Info=Info+1
+                if "WARNING" in line:
+                    Warning=Warning+1
+                if "ERROR" in line:
+                    Error=Error+1     
+                if "Failed login" in line:
+                    Failed_login=Failed_login+1
+                    Failed_login_events.append(line)
+                if "Suspicious PowerShell" in line:
+                    Suspicious_Powershell=Suspicious_Powershell+1
+                    Suspicious_Powershell_Events.append(line)
+                if "New administrator account created" in line:
+                    Admin_created=Admin_created+1
+                    Admin_created_events.append(line)
+    except FileNotFoundError:
+         print("please enter a valid file path")
+         return
+    if Failed_login>=5:
+        print()
+        print("[!] ALERT: High number of failed logins detected")
 
+
+    print()
+    print("===== Log Analysis =====")
+    print(f"Infos: {Info}")
+    print(f"Warnings: {Warning}")
+    print(f"Errors: {Error}")
+    print(f"Failed Logins: {Failed_login}")
+    print(f"Suspicious Powershell Events: {Suspicious_Powershell}")
+    print(f"Admin Accounts Created: {Admin_created}")
+    print()
+    print("===== FAILED LOGIN EVENTS =====")
+    for event in Failed_login_events:
+        print(event, end="")
+    print()
+    print("===== SUSPICIOUS POWERSHELL EVENTS =====")
+    for event in Suspicious_Powershell_Events:
+        print(event, end="")
+    print()
+    print("===== ADMIN ACCOUNTS EVENTS =====")
+    for event in Admin_created_events:
+        print(event, end="")
+    print()
 #dictionary to make if/elif statements not as long and to tidy up code
 options={
     "password generator" :password_generator
