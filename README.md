@@ -1,97 +1,123 @@
-# CyberSecurity ToolKit V1.0
+# CyberSecurity Toolkit V1.0
 
 A Python-based command-line cybersecurity toolkit built as a learning and portfolio project.
 
-The project is designed to provide a collection of small cybersecurity utilities while developing practical Python, networking, error handling, and security-related programming skills.
+The project focuses on developing practical Python programming skills while implementing common cybersecurity concepts and tools.
 
-> **Status:** In Development
+**Status:** V1.0 — Feature Complete
 
 ---
 
 ## Features
 
-### Completed
+### 1. Password Generator
 
-* **Password Generator**
+* Generates random passwords
+* Supports configurable password length
+* Uses uppercase and lowercase letters
+* Includes numbers and symbols
+* Uses Python's `secrets` module for cryptographically stronger random generation
 
-  * Generates random passwords.
-  * Supports lowercase letters, uppercase letters, numbers, and symbols.
-  * Uses Python's `secrets` module for cryptographically stronger random generation.
-  * Allows the user to specify password length.
+### 2. Password Strength Checker
 
-* **Password Strength Checker**
+* Checks password characteristics
+* Evaluates password length
+* Checks for uppercase and lowercase characters
+* Checks for numbers and symbols
+* Provides feedback on password strength
 
-  * Evaluates password characteristics.
-  * Checks password length and character types.
-  * Provides a strength assessment based on the checks performed.
+### 3. Hash Generator
 
-* **Hash Generator**
+Supports:
 
-  * Generates hashes from user-provided input.
-  * Supports:
+* SHA-256
+* SHA-512
+* SHA-1
 
-    * SHA-256
-    * SHA-512
-    * SHA-1
+Allows users to generate hashes from input data.
 
-* **IP Information**
+### 4. IP Information
 
-  * Accepts an IPv4 or IPv6 address.
-  * Uses Python's `ipaddress` module to validate and process addresses.
-  * Provides information about the supplied IP address.
+* Accepts an IP address from the user
+* Uses Python's `ipaddress` module
+* Provides information about the supplied IP address
 
-* **TCP Port Scanner**
+### 5. TCP Port Scanner
 
-  * Scans a user-defined range of TCP ports.
-  * Validates IP addresses before scanning.
-  * Validates port ranges between 1 and 65535.
-  * Detects open and refused/closed ports.
-  * Handles connection timeouts.
-  * Handles other socket/OS errors.
-  * Properly closes sockets after each connection attempt.
-  * Stores and displays open and closed port results.
+* Scans a user-defined range of TCP ports
+* Supports ports `1–65535`
+* Validates IP addresses and port ranges
+* Identifies open ports
+* Identifies refused/closed ports
+* Handles connection timeouts
+* Handles network errors
+* Properly closes sockets after scanning
+* Displays a summary of discovered open and closed ports
 
-* **File Hash Checker**
+**Note:** The port scanner is intended for systems and networks that you own or have explicit permission to test.
 
-  * Calculates hashes for files.
-  * Allows file integrity to be checked by comparing calculated hashes.
-  * Uses Python hashing functionality to process file contents.
+### 6. File Hash Checker
 
-* **Encode/Decode**
+* Calculates file hashes
+* Supports hash comparison
+* Can be used to check whether a file has changed
+* Demonstrates basic file-integrity monitoring concepts
 
-  * Provides encoding and decoding functionality.
-  * Allows data to be converted between encoded and decoded forms.
+### 7. Encode / Decode
 
-* **Subnet Calculator**
+* Encodes user-provided data
+* Decodes encoded data
+* Provides practice with data transformation and handling
 
-  * Processes IP addresses and subnet information.
-  * Uses Python's `ipaddress` module for subnet calculations.
-  * Provides useful network information from a supplied subnet.
+### 8. Subnet Calculator
 
-### In Development
+* Accepts IP addresses and subnet information
+* Uses Python's `ipaddress` module
+* Calculates subnet information
 
-* **Log Analyzer**
+### 9. Log Analyzer
+
+Analyzes text-based log files and identifies common security-related events.
+
+Features include:
+
+* Counts `INFO`, `WARNING`, and `ERROR` entries
+* Counts failed login attempts
+* Detects suspicious PowerShell activity
+* Detects newly created administrator accounts
+* Stores and displays the original log lines associated with detected events
+* Alerts when 5 or more failed login attempts are detected
+* Handles invalid file paths
+* Handles empty log files
+* Uses `with open()` for automatic file handling
+
+The analyzer provides both a summary of event counts and the individual events that were detected.
 
 ---
 
 ## Technologies Used
 
-The project is written in **Python** and currently uses modules including:
-
+* Python 3
 * `socket`
 * `ipaddress`
 * `hashlib`
 * `secrets`
 * `string`
+* File handling
+* Exception handling
+* Lists and loops
+* Conditional statements
+* Functions
 
-Additional modules may be added as development continues.
+No external Python packages are currently required.
 
 ---
 
 ## Requirements
 
 * Python 3.x
-* No external packages are currently required for the core toolkit.
+* Windows, Linux, or macOS
+* No external dependencies
 
 ---
 
@@ -100,13 +126,13 @@ Additional modules may be added as development continues.
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/DxnielArms64213/Cybersecurity-Toolkit-v1.0.git
 ```
 
-Move into the project directory:
+Navigate into the project directory:
 
 ```bash
-cd "Cybersecurity ToolKit V1"
+cd Cybersecurity-Toolkit-v1.0
 ```
 
 Run the program:
@@ -119,68 +145,70 @@ python "#CyberSecurity ToolKit V1.py"
 
 ## Usage
 
-When the program starts, a main menu provides access to the available tools.
+The toolkit uses a command-line menu.
 
-Example:
+Available tools:
 
 ```text
-=================================
-      CYBERSECURITY TOOLKIT
-=================================
-
 1. Password Generator
 2. Password Strength Checker
 3. Hash Generator
 4. IP Information
 5. Port Scanner
 6. File Hash Checker
-7. Encode/Decode
+7. Encode / Decode
 8. Subnet Calculator
 9. Log Analyzer
 10. Exit
 ```
 
-Select the desired tool and follow the prompts provided by the program.
+Users can select a tool from the main menu and follow the prompts provided by the program.
 
 ---
 
-## Port Scanner
+## Log Analyzer
 
-The Port Scanner is designed to provide basic TCP port discovery within a specified range.
-
-The user provides:
-
-1. A target IP address.
-2. A starting port.
-3. An ending port.
-
-The program validates the supplied information before starting the scan.
-
-For each port, the scanner attempts to establish a TCP connection and categorises the result.
+The Log Analyzer accepts a text log file and analyzes each line for specific events.
 
 Example:
 
 ```text
-22: open
-23: closed
-24: closed
-25: timed out
-
-Open ports: [22]
-Closed ports: [23, 24]
+2026-09-18 10:15:22 INFO User admin logged in
+2026-09-18 10:16:03 WARNING Failed login attempt for user admin
+2026-09-18 10:17:11 ERROR Database connection failed
+2026-09-18 17:01:22 WARNING Suspicious PowerShell command detected
+2026-09-18 18:15:42 WARNING New administrator account created: testadmin
 ```
 
-The scanner is intended for use on systems and networks where the user has permission to perform scanning.
+The analyzer produces a summary similar to:
+
+```text
+===== Log Analysis =====
+Infos: 1
+Warnings: 3
+Errors: 1
+Failed Logins: 1
+Suspicious PowerShell Events: 1
+Admin Accounts Created: 1
+```
+
+It then displays the individual detected events in separate sections.
 
 ---
 
 ## Security Considerations
 
-This project is intended for **educational purposes and authorised security testing**.
+This project contains functionality such as port scanning and log analysis that can be used for security testing.
 
-Network scanning should only be performed against systems that you own or have explicit permission to test.
+The tools should only be used against systems, networks, files, and environments that you own or have explicit permission to test.
 
-The toolkit is being developed primarily as a way to learn Python programming and fundamental cybersecurity concepts.
+The project is primarily intended for:
+
+* Education
+* Python learning
+* Cybersecurity practice
+* Lab environments
+* Authorised security testing
 
 ---
 
@@ -188,82 +216,94 @@ The toolkit is being developed primarily as a way to learn Python programming an
 
 The main goals of this project are to:
 
-* Improve Python programming skills.
-* Develop practical cybersecurity knowledge.
-* Learn how networking concepts can be implemented in Python.
-* Practice error handling and input validation.
-* Build useful command-line security utilities.
-* Create a portfolio project demonstrating practical development skills.
+* Learn Python through practical projects
+* Understand fundamental cybersecurity concepts
+* Develop command-line applications
+* Practice exception handling and input validation
+* Work with networking concepts
+* Work with files and logs
+* Build tools that have practical cybersecurity applications
+* Develop a portfolio project demonstrating programming and cybersecurity skills
 
 ---
 
 ## Development
 
-The toolkit is being developed incrementally.
+This project was developed incrementally while learning Python.
 
-Development has included learning and applying concepts such as:
+Concepts practised throughout the project include:
 
-* Variables and data types
+* Variables
+* Data types
+* Strings
+* Lists
 * Loops
 * Conditional statements
 * Functions
 * Dictionaries
-* Lists
+* User input
 * Exception handling
-* Input validation
 * File handling
+* Networking
+* Sockets
 * Hashing
-* Cryptographically secure random generation
-* TCP sockets
 * IP addressing
-* Port scanning
 * Subnetting
-* File integrity verification
-* Data encoding and decoding
+* Basic log analysis
 
-The project will continue to evolve as additional functionality is implemented.
-
----
-
-## Planned Improvements
-
-Potential future improvements include:
-
-* More advanced port scanning
-* Service/banner detection
-* More detailed password analysis
-* Additional hashing algorithms
-* Improved file integrity verification
-* More detailed subnet calculations
-* Expanded log analysis and detection capabilities
-* Improved command-line output
-* More comprehensive testing
-* Additional security-focused utilities
-* Improved documentation
+The project was designed to progressively increase in complexity rather than being built from a complete solution.
 
 ---
 
 ## Testing
 
-Formal testing and screenshots will be completed once development of the toolkit is finished.
+Formal testing and screenshots will be performed after the completion of the V1 feature set.
 
-The final testing phase will cover:
+Testing will cover:
 
-* Valid and invalid user input
-* Expected and unexpected inputs
-* Successful operation of each tool
-* Error handling
-* Edge cases
-* Port scanning results
-* File hashing and integrity verification
-* Encoding and decoding
-* Subnet calculations
+* Valid input
+* Invalid input
+* Boundary values
+* Invalid IP addresses
+* Invalid port ranges
+* Port scanning
+* File handling
+* Invalid file paths
+* Empty files
+* Hash generation
+* Hash comparison
 * Log analysis
+* Failed login detection
+* Suspicious PowerShell detection
+* Administrator account detection
+* Alert thresholds
+* Multiple events within the same log
 
-Screenshots demonstrating the completed functionality will also be added to the repository.
+Testing results and screenshots will be documented separately.
+
+---
+
+## Planned Improvements
+
+Future versions may include:
+
+* Additional cybersecurity tools
+* Improved error handling
+* More advanced log analysis
+* Additional network reconnaissance functionality
+* Service detection
+* Banner grabbing
+* DNS tools
+* Network discovery
+* Improved reporting
+* Exporting results to files
+* Improved command-line arguments
+* More advanced security detections
 
 ---
 
 ## Disclaimer
 
-This project is intended for educational purposes and authorised security testing. Only use it against systems and networks you own or have explicit permission to test.
+This project is intended for educational purposes and authorised security testing.
+
+Only use the tools against systems, networks, and files that you own or have explicit permission to test.
