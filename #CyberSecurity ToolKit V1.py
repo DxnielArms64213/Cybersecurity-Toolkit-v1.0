@@ -220,24 +220,48 @@ def ip_information():
 
 
 def port_scanner():
-    IP_input=input("please enter the IP: ").strip()
-    start_port = int(input("please enter a start port: ").strip())
-    end_port = int(input("please enter an end port: ").strip())
+    valid_port=False
+    valid_ip = False
+    while valid_ip == False:
+        try:
+            IP_input = input("please enter the IP: ").strip()
+            IP = ipaddress.ip_address(IP_input)
+            valid_ip = True
+        except ValueError:
+            print("please enter a valid ip")
+    while valid_port==False:
+            try:
+                start_port = int(input("please enter a start port: ").strip())
+                end_port = int(input("please enter an end port: ").strip())
+                if start_port<1 or end_port>65535 or start_port>end_port or start_port>65535 or end_port<1:
+                    print("please enter a valid port")
+                else:
+                    valid_port=True
+            except ValueError:
+                print("please enter a number")
+                print("please try again")
+    open_port=[]
+    closed_port=[]
+                
     for port in range(start_port,end_port+1):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        if start_port<0 or end_port>65535 or start_port>end_port:
-             print("please enter a valid port")
         try:
             sock.settimeout(5)
             sock.connect((IP_input,port))
         except ConnectionRefusedError:
             print(f"{port}:", "closed")
+            closed_port.append(port)
         except TimeoutError:
             print(f"{port}:","timed out")
+        except OSError as error:
+            print(f"{port}: network error-{error}")
         else:
+            open_port.append(port)
             print(f"{port}:", "open")
         finally:
              sock.close()
+    print(f"Open ports: {open_port}")
+    print(f"Closed ports: {closed_port}")
    
     
 def file_hash_checker():
