@@ -1,45 +1,97 @@
-# Cybersecurity Toolkit
+# CyberSecurity ToolKit V1.0
 
-A Python-based command-line toolkit containing a collection of practical cybersecurity utilities.
+A Python-based command-line cybersecurity toolkit built as a learning and portfolio project.
 
-## Purpose
+The project is designed to provide a collection of small cybersecurity utilities while developing practical Python, networking, error handling, and security-related programming skills.
 
-This project was created to develop practical Python programming and cybersecurity skills by building useful security-related tools from scratch.
+> **Status:** In Development
+
+---
 
 ## Features
 
-* Password Generator
-* Password Strength Checker
-* Hash Generator
+### Completed
+
+* **Password Generator**
+
+  * Generates random passwords.
+  * Supports lowercase letters, uppercase letters, numbers, and symbols.
+  * Uses Python's `secrets` module for cryptographically stronger random generation.
+  * Allows the user to specify password length.
+
+* **Password Strength Checker**
+
+  * Evaluates password characteristics.
+  * Checks password length and character types.
+  * Provides a strength assessment based on the checks performed.
+
+* **Hash Generator**
+
+  * Generates hashes from user-provided input.
+  * Supports:
+
+    * SHA-256
+    * SHA-512
+    * SHA-1
+
+* **IP Information**
+
+  * Accepts an IPv4 or IPv6 address.
+  * Uses Python's `ipaddress` module to validate and process addresses.
+  * Provides information about the supplied IP address.
+
+* **TCP Port Scanner**
+
+  * Scans a user-defined range of TCP ports.
+  * Validates IP addresses before scanning.
+  * Validates port ranges between 1 and 65535.
+  * Detects open and refused/closed ports.
+  * Handles connection timeouts.
+  * Handles other socket/OS errors.
+  * Properly closes sockets after each connection attempt.
+  * Stores and displays open and closed port results.
+
+### In Development
+
 * File Hash Checker
-* Encode / Decode
-* IP Information
+* Encode/Decode
 * Subnet Calculator
-* Port Scanner
 * Log Analyzer
 
-## Technologies
+---
 
-* Python
-* Git
-* GitHub
-* Python Standard Library
+## Technologies Used
 
-## What I'm Learning
+The project is written in **Python** and currently uses modules including:
 
-* Python programming
-* Input validation
-* Error handling
-* Working with files
-* Networking concepts
-* Cryptographic hashing
-* IP addressing and subnetting
-* Data encoding and decoding
-* Building command-line applications
-* Git and GitHub
+* `socket`
+* `ipaddress`
+* `hashlib`
+* `secrets`
+* `string`
 
-## Status
+Additional modules may be added as development continues.
 
-In Progress
+---
 
-New features and improvements will be added as I continue developing my Python and cybersecurity skills.
+## Requirements
+
+* Python 3.x
+* No external packages are currently required for the core toolkit.
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Move into the project directory:
+
+```bash
+cd "Cybersecurity Tool
+```
+
