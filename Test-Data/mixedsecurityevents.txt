@@ -1,0 +1,9 @@
+2026-09-19 11:00:01 INFO User logged in successfully
+2026-09-19 11:02:14 WARNING Failed login from 192.168.1.60
+2026-09-19 11:03:22 ERROR Authentication service failure
+2026-09-19 11:05:43 Suspicious PowerShell activity detected
+2026-09-19 11:06:17 INFO File accessed successfully
+2026-09-19 11:08:31 New administrator account created: backupadmin
+2026-09-19 11:10:45 WARNING Failed login from 192.168.1.61
+2026-09-19 11:12:03 Suspicious PowerShell activity detected
+2026-09-19 11:14:29 INFO System backup completed
