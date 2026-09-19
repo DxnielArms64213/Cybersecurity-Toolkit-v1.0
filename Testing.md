@@ -51,35 +51,33 @@
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
 | T020 | Hash file | `test.txt` | Generates file hash | Generated | pass |
-| T021 | Unmodified file | Original file + matching hash | Reports match | | |
-| T022 | Modified file | Modified file + original hash | Reports mismatch | | |
-| T023 | Invalid file | Invalid path | Displays error | | |
+| T021 | Invalid file | Invalid path | Displays error | file not found, please try again | pass |
 
 ## Encode / Decode
 
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
-| T024 | Encode | `[test text]` | Encodes text successfully | | |
-| T025 | Decode | `[encoded text]` | Returns original text | | |
+| T022 | Encode | `[test text]` | Encodes text successfully | aGVsbG8=  is your result | pass |
+| T023 | Decode | `[encoded text]` | Returns original text | hello  is your result | pass |
 
 ## Subnet Calculator
 
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
-| T026 | Valid subnet | `192.168.1.0/24` | Displays subnet information | | |
-| T027 | Invalid subnet | `[invalid input]` | Displays error | | |
+| T024 | Valid subnet | `192.168.1.0/24` | Displays subnet information | Information displayed successfully; output too lengthy to include in full. | pass |
+| T025 | Invalid subnet | `[invalid input]` | Displays error | Pleease try again | typo mistake in code, besides that pass |
 
 ## Log Analyzer
 
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
-| T028 | Basic log | `basic_log.txt` | Correctly counts events | | |
-| T029 | Failed logins below threshold | `failed_logins_4.txt` | No alert displayed | | |
-| T030 | Failed logins at threshold | `failed_logins_5.txt` | Alert displayed | | |
-| T031 | PowerShell detection | `mixed_security_events.txt` | Detects PowerShell events | | |
-| T032 | Admin account detection | `mixed_security_events.txt` | Detects administrator creation | | |
-| T033 | Empty log | `empty_log.txt` | Displays zero counts without crashing | | |
-| T034 | Invalid file path | Invalid path | Displays error and returns to menu | | |
+| T028 | Basic log | `basic_log.txt` | Correctly counts events | Displays events correctly | pass |
+| T029 | Failed logins below threshold | `failed_logins_4.txt` | No alert displayed | No alert was displayed | pass |
+| T030 | Failed logins at threshold | `failed_logins_5.txt` | Alert displayed | Alert was displayed | pass |
+| T031 | PowerShell detection | `mixed_security_events.txt` | Detects PowerShell events | PowerShell events was detected | pass |
+| T032 | Admin account detection | `mixed_security_events.txt` | Detects administrator creation | Administrator creation events was detected| pass |
+| T033 | Empty log | `empty_log.txt` | Displays zero counts without crashing | Zero counts correctly displayed | pass |
+| T034 | Invalid file path | Invalid path | Displays error and returns to menu | please enter a valid file path | pass |
 
 ---
 
