@@ -42,7 +42,7 @@
 | T014 | Open port | `[known open port]` | Port reported as open | 53: open port | pass |
 | T015 | Closed port | `[known closed port]` | Port reported as closed | 1: closed | pass |
 | T016 | Invalid IP | `999.999.999.999` | Displays error | please enter a valid ip | pass |
-| T017 | Invalid port | `0` | Displays error | please enter a valid ip | pass |
+| T017 | Invalid port | `0` | Displays error | please enter a valid port | pass |
 | T018 | Invalid port | `65536` | Displays error | please enter a valid port | pass |
 | T019 | Reversed range | `100-1` | Displays error | please enter a valid port | pass |
 
@@ -65,7 +65,7 @@
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
 | T024 | Valid subnet | `192.168.1.0/24` | Displays subnet information | Information displayed successfully; output too lengthy to include in full. | pass |
-| T025 | Invalid subnet | `[invalid input]` | Displays error | Pleease try again | typo mistake in code, besides that pass |
+| T025 | Invalid subnet | `[invalid input]` | Displays error | Pleease try again | typo mistake in code, besides that pass(fixed) |
 
 ## Log Analyzer
 
