@@ -85,13 +85,13 @@
 
 | Feature | Tests | Passed | Failed |
 |---|---:|---:|---:|
-| Password Generator | | | |
-| Password Strength Checker | | | |
-| Hash Generator | | | |
-| IP Information | | | |
-| Port Scanner | | | |
-| File Hash Checker | | | |
-| Encode / Decode | | | |
-| Subnet Calculator | | | |
-| Log Analyzer | | | |
-| **Total** | | | |
+| Password Generator | 4 | 4 | 0 |
+| Password Strength Checker | 3 | 3 | 0 |
+| Hash Generator | 3 | 3 | 0 |
+| IP Information | 2 | 2 | 0 |
+| Port Scanner | 7 | 7 | 0 |
+| File Hash Checker | 2 | 2 | 0 |
+| Encode / Decode | 2 | 2 | 0 |
+| Subnet Calculator | 2 | 2 | 0 |
+| Log Analyzer | 7 | 7 | 0 |
+| **Total** | **32** | **32** | **0** |
