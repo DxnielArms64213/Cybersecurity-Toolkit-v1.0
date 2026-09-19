@@ -71,13 +71,13 @@
 
 | Test ID | Test | Input | Expected Result | Actual Result | Status |
 |---|---|---|---|---|---|
-| T028 | Basic log | `basic_log.txt` | Correctly counts events | Displays events correctly | pass |
-| T029 | Failed logins below threshold | `failed_logins_4.txt` | No alert displayed | No alert was displayed | pass |
-| T030 | Failed logins at threshold | `failed_logins_5.txt` | Alert displayed | Alert was displayed | pass |
-| T031 | PowerShell detection | `mixed_security_events.txt` | Detects PowerShell events | PowerShell events was detected | pass |
-| T032 | Admin account detection | `mixed_security_events.txt` | Detects administrator creation | Administrator creation events was detected| pass |
-| T033 | Empty log | `empty_log.txt` | Displays zero counts without crashing | Zero counts correctly displayed | pass |
-| T034 | Invalid file path | Invalid path | Displays error and returns to menu | please enter a valid file path | pass |
+| T026 | Basic log | `basic_log.txt` | Correctly counts events | Displays events correctly | pass |
+| T027 | Failed logins below threshold | `failed_logins_4.txt` | No alert displayed | No alert was displayed | pass |
+| T028 | Failed logins at threshold | `failed_logins_5.txt` | Alert displayed | Alert was displayed | pass |
+| T029 | PowerShell detection | `mixed_security_events.txt` | Detects PowerShell events | PowerShell events was detected | pass |
+| T030 | Admin account detection | `mixed_security_events.txt` | Detects administrator creation | Administrator creation events was detected| pass |
+| T031 | Empty log | `empty_log.txt` | Displays zero counts without crashing | Zero counts correctly displayed | pass |
+| T032 | Invalid file path | Invalid path | Displays error and returns to menu | please enter a valid file path | pass |
 
 ---
 
