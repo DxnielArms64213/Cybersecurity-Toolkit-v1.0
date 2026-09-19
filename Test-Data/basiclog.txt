@@ -1,0 +1,4 @@
+2026-09-19 09:00:01 INFO User logged in
+2026-09-19 09:02:15 INFO System started
+2026-09-19 09:05:22 WARNING Disk space is low
+2026-09-19 09:10:43 ERROR Failed to access database
